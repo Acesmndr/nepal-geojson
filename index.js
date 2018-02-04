@@ -1,7 +1,7 @@
 const fs = require('fs');
 const GeojsonMinifier = require('geojson-minifier');
 
-const NEPAL_GEOJSON = JSON.parse(fs.readFileSync('assets/nepal.geojson.packed'));
+const NEPAL_GEOJSON = JSON.parse(fs.readFileSync(`${__dirname}/assets/nepal.geojson.packed`));
 const _roundOff = value => Math.floor(value * 1000000) / 1000000;
 const nepalGeojson = {
   districts() {

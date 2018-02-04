@@ -1,5 +1,5 @@
 # Nepal GeoJSON
-[![npm](https://img.shields.io/badge/npm-v1.0.0-green.svg)]()
+[![npm](https://img.shields.io/badge/npm-v1.0.1-green.svg)]()
 [![Build Status](https://travis-ci.org/Acesmndr/nepal-geojson.svg?branch=master)](https://travis-ci.org/Acesmndr/nepal-geojson)
 [![license](https://img.shields.io/npm/l/express.svg)]()
 
