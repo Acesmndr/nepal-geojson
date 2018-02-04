@@ -20,11 +20,12 @@ console.log(districtGeojson);
 
 ## Author
 
-Aashish Manandhar <acesmndr@gmail.com> http://github.com/acesmndr
+Aashish Manandhar <acesmndr@gmail.com>
+http://github.com/acesmndr
 
 ## License
 
  - **MIT** : http://opensource.org/licenses/MIT
 
 [![forthebadge](http://forthebadge.com/images/badges/uses-js.svg)](http://forthebadge.com)
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
