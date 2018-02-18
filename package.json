@@ -17,6 +17,7 @@
   "author": "acesmndr",
   "license": "MIT",
   "dependencies": {
+    "brfs": "^1.4.4",
     "geojson-minifier": "^0.1.1"
   },
   "devDependencies": {
