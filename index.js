@@ -14,6 +14,13 @@ const nepalGeojson = {
     }
     return unpackedCoordinates;
   },
+  district(districtName) {
+    const districts = this.districts().features;
+    return {
+      type: 'FeatureCollection',
+      features: districts.find(district => district.properties.DISTRICT === districtName),
+    };
+  },
   province(provinceNo) {
     const districts = this.districts().features;
     return {

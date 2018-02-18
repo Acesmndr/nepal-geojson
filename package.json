@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha"
   },
+  "bin": {
+    "nepal-geojson": "./cli.js"
+  },
   "keywords": [
     "Nepal",
     "Map",
