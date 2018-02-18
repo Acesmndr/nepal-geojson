@@ -14,5 +14,39 @@ const nepalGeojson = {
     }
     return unpackedCoordinates;
   },
+  province(provinceNo) {
+    const districts = this.districts().features;
+    return {
+      type: 'FeatureCollection',
+      features: districts.filter(district => district.properties.PROVINCE === provinceNo),
+    };
+  },
+  districtsInfo() {
+    const districts = this.districts().features;
+    return districts.map(district => ({
+      name: district.properties.DISTRICT,
+      headquarter: district.properties.HQ,
+      province: district.properties.PROVINCE,
+    }));
+  },
+  districtInfo(district) {
+    return this.districtInfo().find(place => place.name === district.toUpperCase());
+  },
+  districtList() {
+    const districts = this.districts().features;
+    return districts.map(district => district.properties.district);
+  },
+  provincesWithDistricts() {
+    const districts = this.districts().features;
+    const provinces = new Array[7]();
+    districts.map(district => provinces[district.properties.province - 1].push({ name: district.properties.DISTRICT, hq: district.properties.HQ }));
+    return provinces.map((provinceDistricts, pn) => ({
+      province: pn + 1,
+      districts: provinceDistricts,
+    }));
+  },
+  provinceWithDistricts(provinceNumber) {
+    return this.provincesWithDistricts().find(province => province.province === provinceNumber);
+  },
 };
 module.exports = nepalGeojson;
