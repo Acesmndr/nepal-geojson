@@ -18,7 +18,7 @@ const nepalGeojson = {
     const districts = this.districts().features;
     return {
       type: 'FeatureCollection',
-      features: districts.find(district => district.properties.DISTRICT === districtName),
+      features: [districts.find(district => district.properties.DISTRICT === districtName)],
     };
   },
   province(provinceNo) {
