@@ -31,7 +31,7 @@ if (arg.includes('districts')) {
 } else if (arg.includes('province')) {
   const provinceNumber = arg.replace('province', '');
   if (provinceNumber.length) {
-    const province = provinceNumber.substr(1);
+    const province = Number(provinceNumber.substr(1));
     writeFile(`Province-${province}`, nepalGeojson.province(province));
   } else {
     error();
