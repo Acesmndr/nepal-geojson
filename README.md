@@ -49,7 +49,7 @@ npm i -g nepal-geojson
 # to build geojson for all the districts
 nepal-geojson districts
 # to build geojson for a particular district
-nepal-geojson district
+nepal-geojson district=Kathmandu
 # to get the geojson for all the districts in province 1
 nepal-geojson province=1
 ```

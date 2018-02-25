@@ -1,5 +1,7 @@
 .travis.yml
 .eslintrc.json
+assets/nepal.geojson
 example
 generated-geojson
+node_modules
 test
