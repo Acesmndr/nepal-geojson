@@ -17,14 +17,14 @@
   "author": "acesmndr",
   "license": "MIT",
   "dependencies": {
-    "brfs": "^1.4.4",
+    "brfs": "^1.6.1",
     "geojson-minifier": "^0.1.1"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "eslint": "^4.17.0",
+    "chai": "^4.2.0",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "mocha": "^5.0.0"
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0"
   }
 }
