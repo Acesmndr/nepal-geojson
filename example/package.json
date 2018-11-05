@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "transform-loader": "^0.2.4",
-    "webpack": "^3.11.0"
+    "webpack": "^3.12.0"
   }
 }
