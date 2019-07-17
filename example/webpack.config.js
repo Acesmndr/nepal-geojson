@@ -2,8 +2,9 @@ const path = require('path');
 
 module.exports = {
   entry: './index.js',
+  mode: 'production',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         loader: 'transform-loader?brfs',
@@ -12,6 +13,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(`${__dirname}/build/`),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
   },
 };
