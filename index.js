@@ -1,6 +1,5 @@
 // load the nepal-geojson library
-const nepalGeojson = require('../index');
-// replace with const nepalGeojson = require('nepal-geojson');
+const nepalGeojson = require('nepal-geojson');
 const colors = ['#009688', '#4CAF50', '#FF5722', '#2196F3', '#3F51B5', '#9C27B0', '#03A9F4'];
 
 const nepal = nepalGeojson.districts(); // get all districts

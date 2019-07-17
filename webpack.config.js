@@ -2,8 +2,9 @@ const path = require('path');
 
 module.exports = {
   entry: './index.js',
+  mode: 'production',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         loader: 'transform-loader?brfs',
