@@ -4,14 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "transform-loader": "^0.2.4",
-    "nepal-geojson": "^2.4.4",
     "webpack": "^4.35.3"
   },
   "devDependencies": {
