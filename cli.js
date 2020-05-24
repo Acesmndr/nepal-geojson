@@ -28,7 +28,7 @@ const writeFile = (filename, content) => {
 };
 
 switch (command) {
-  case 'map':
+  case 'country':
     writeFile('nepal', nepalGeojson.districts());
     break;
   case 'province':
