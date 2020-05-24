@@ -64,13 +64,13 @@ You could also clone the repo and run the following commands to generate the map
 # to clone the repo
 git clone git@github.com:Acesmndr/nepal-geojson.git
 cd nepal-geojson
-yarn install
+npm run install
 # to build geojson for all the districts
-yarn country
+npm run country
 # to build geojson for a particular district
-yarn district Kathmandu
+npm run district Kathmandu
 # to get the geojson for all the districts in province 1
-yarn province 1
+npm run province 1
 
 ### Download Static Geojson
 
