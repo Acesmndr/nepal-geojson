@@ -72,6 +72,7 @@ npm run country
 npm run district Kathmandu
 # to get the geojson for all the districts in province 1
 npm run province 1
+```
 
 ### Download Static Geojson
 
