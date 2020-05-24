@@ -42,19 +42,35 @@ const dhankutaDistrictInfo = nepalGeojson.districtInfo('DHANKUTA'); // to get in
 const provincesDistrictsInfo = nepalGeojson.provincesWithDistricts(); // returns an array of arrays of provinces each containing info objects of containing districts
 const provinceDistrictsInfo = nepalGeojson.provinceWithDistricts(1); // returns array of info objects of districts in province 1
 ```
+
 ### CLI Usage
 
 If you want to use it to generate geojson files in the CLI follow the following steps.
 ```shell
 npm i -g nepal-geojson
 # to build geojson for all the districts
-nepal-geojson districts
+nepal-geojson country
 # to build geojson for a particular district
-nepal-geojson district=Kathmandu
+nepal-geojson district Kathmandu
 # to get the geojson for all the districts in province 1
-nepal-geojson province=1
+nepal-geojson province 1
 ```
 The built geojson files are stored in **geojson** folder.
+
+#### Alternative to CLI Usage
+
+You could also clone the repo and run the following commands to generate the maps.
+```shell
+# to clone the repo
+git clone git@github.com:Acesmndr/nepal-geojson.git
+cd nepal-geojson
+yarn install
+# to build geojson for all the districts
+yarn country
+# to build geojson for a particular district
+yarn district Kathmandu
+# to get the geojson for all the districts in province 1
+yarn province 1
 
 ### Download Static Geojson
 
