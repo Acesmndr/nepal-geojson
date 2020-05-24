@@ -7,6 +7,7 @@
 * Lightweight (~600KB) packed **geojson coordinates** of Nepal's district and province boundaries for use with your map.
 * Includes all **77 districts** with their **headquarters** as well as all **7 provinces**.
 * Can be used as a **NPM package** in your project or you can **download** the [generated geojson files](https://github.com/Acesmndr/nepal-geojson/tree/master/generated-geojson) and use them as per your need.
+* Since this is a lightweight version of the map, some tradeoff has been made so there isn't minute level accuracy of this map.
 
 ## Example Usage with Google Maps
 * [acesmndr.github.io/nepal-geojson](https://acesmndr.github.io/nepal-geojson/)
@@ -42,19 +43,35 @@ const dhankutaDistrictInfo = nepalGeojson.districtInfo('DHANKUTA'); // to get in
 const provincesDistrictsInfo = nepalGeojson.provincesWithDistricts(); // returns an array of arrays of provinces each containing info objects of containing districts
 const provinceDistrictsInfo = nepalGeojson.provinceWithDistricts(1); // returns array of info objects of districts in province 1
 ```
+
 ### CLI Usage
 
 If you want to use it to generate geojson files in the CLI follow the following steps.
 ```shell
 npm i -g nepal-geojson
 # to build geojson for all the districts
-nepal-geojson districts
+nepal-geojson country
 # to build geojson for a particular district
-nepal-geojson district=Kathmandu
+nepal-geojson district Kathmandu
 # to get the geojson for all the districts in province 1
-nepal-geojson province=1
+nepal-geojson province 1
 ```
 The built geojson files are stored in **geojson** folder.
+
+#### Alternative to CLI Usage
+
+You could also clone the repo and run the following commands to generate the maps.
+```shell
+# to clone the repo
+git clone git@github.com:Acesmndr/nepal-geojson.git
+cd nepal-geojson
+npm run install
+# to build geojson for all the districts
+npm run country
+# to build geojson for a particular district
+npm run district Kathmandu
+# to get the geojson for all the districts in province 1
+npm run province 1
 
 ### Download Static Geojson
 

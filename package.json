@@ -1,10 +1,13 @@
 {
   "name": "nepal-geojson",
-  "version": "2.4.4",
+  "version": "3.0.0",
   "description": "Lightweight package for map of Nepal",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "country": "node cli.js country",
+    "province": "node cli.js province",
+    "district": "node cli.js district"
   },
   "bin": {
     "nepal-geojson": "./cli.js"
