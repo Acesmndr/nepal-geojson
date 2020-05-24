@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 const nepalGeojson = require('./index');
 const fs = require('fs');
-
-const arg = (process.argv.slice(-1)[0]);
+const args = process.argv.slice(2);
+const command = args[0];
+const selector = args[1] || null;
 
 const error = () => {
   console.log(`Nepal Geojson
@@ -10,12 +11,12 @@ const error = () => {
   nepal-geojson [option]
   
   Options:
-  districts                                     provides geojson file of the entire country
-  district=KATHMANDU                            provides geojson file of the selected district
-  province=1                                    provides geojson file of the selected province
+  country                                       provides geojson file of the entire country
+  district KATHMANDU                            provides geojson file of the selected district
+  province 1                                    provides geojson file of the selected province
   
   
-  acesmndr 2018
+  acesmndr 2018-2020
   `);
 };
 
@@ -26,24 +27,26 @@ const writeFile = (filename, content) => {
   fs.writeFileSync(`./geojson/${filename}.geojson`, JSON.stringify(content));
 };
 
-if (arg.includes('districts')) {
-  writeFile('nepal', nepalGeojson.districts());
-} else if (arg.includes('province')) {
-  const provinceNumber = arg.replace('province', '');
-  if (provinceNumber.length) {
-    const province = Number(provinceNumber.substr(1));
+switch (command) {
+  case 'map':
+    writeFile('nepal', nepalGeojson.districts());
+    break;
+  case 'province':
+    if (!selector) {
+      error();
+      return;
+    }
+    const province = Number(selector);
     writeFile(`Province-${province}`, nepalGeojson.province(province));
-  } else {
-    error();
-  }
-} else if (arg.includes('district')) {
-  const districtName = arg.replace('district', '');
-  if (districtName.length) {
-    const district = districtName.substr(1);
+    break;
+  case 'district':
+    if (!selector) {
+      error();
+      return;
+    }
+    const district = selector.toLocaleUpperCase();
     writeFile(`${district}-district`, nepalGeojson.district(district));
-  } else {
+    break;
+  default:
     error();
-  }
-} else {
-  error();
 }
