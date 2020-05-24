@@ -7,6 +7,7 @@
 * Lightweight (~600KB) packed **geojson coordinates** of Nepal's district and province boundaries for use with your map.
 * Includes all **77 districts** with their **headquarters** as well as all **7 provinces**.
 * Can be used as a **NPM package** in your project or you can **download** the [generated geojson files](https://github.com/Acesmndr/nepal-geojson/tree/master/generated-geojson) and use them as per your need.
+* Since this is a lightweight version of the map, some tradeoff has been made so there isn't minute level accuracy of this map.
 
 ## Example Usage with Google Maps
 * [acesmndr.github.io/nepal-geojson](https://acesmndr.github.io/nepal-geojson/)
