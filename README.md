@@ -65,7 +65,7 @@ You could also clone the repo and run the following commands to generate the map
 # to clone the repo
 git clone git@github.com:Acesmndr/nepal-geojson.git
 cd nepal-geojson
-npm run install
+npm install
 # to build geojson for all the districts
 npm run country
 # to build geojson for a particular district
