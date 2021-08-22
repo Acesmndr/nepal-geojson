@@ -20,11 +20,24 @@ for (let i = 0; i < numberOfDistricts; i += 1) {
     unpackedCoordinates.features[i].geometry.coordinates[0][0][1],
   );
 }
+const isInvalidProvinceInput = (provinceNo) => {
+  const prNo = Number(provinceNo);
+  if (!prNo) {
+    return true;
+  }
+  if (prNo < 1 || prNo > 7) {
+    return true;
+  }
+  return false;
+};
+
 const nepalGeojson = {
   districts() {
+    /** get all districts geojson */
     return unpackedCoordinates;
   },
   district(districtName) {
+    /** get desired district geojson */
     const districts = this.districts().features;
     if (districts.findIndex(
       district => district.properties.DISTRICT === districtName.toUpperCase(),
@@ -41,14 +54,7 @@ const nepalGeojson = {
     };
   },
   province(provinceNo) {
-    const districts = this.districts().features;
-    return {
-      type: 'FeatureCollection',
-      features: districts.filter(district => district.properties.PROVINCE === provinceNo),
-    };
-  },
-  /** get bounding coordinates of a province without district level boundaries */
-  getProvinceBoundary(provinceNo) {
+    /** get bounding coordinates of a province without district level boundaries */
     const districts = this.districts().features;
     const provinceDetails = Object.assign(districts
       .filter(district => district.properties.PROVINCE === provinceNo)
@@ -60,7 +66,31 @@ const nepalGeojson = {
     provinceDetails.geometry.coordinates = [provinceDetails.geometry.coordinates[0]];
     return provinceDetails;
   },
-  getCountryWithProvinceBoundaries() {
+  provinceWithDistricts(provinceNo) {
+    /** get bounding coordinates of a province with district level boundaries */
+    if (isInvalidProvinceInput(provinceNo)) {
+      throw new Error('Province should be between 1 and 7');
+    }
+    const districts = this.districts().features;
+    return {
+      type: 'FeatureCollection',
+      features: districts.filter(district => district.properties.PROVINCE === provinceNo),
+    };
+  },
+  country() {
+    /** get bounding coordinates of Nepal without province or district level boundaries */
+    const districts = this.districts().features;
+    const countryBoundaries = districts
+      .reduce((acc, district) => turf.default(acc, district), {
+        type: 'Feature',
+        properties: {},
+        geometry: { type: 'Polygon', coordinates: [] },
+      });
+    countryBoundaries.geometry.coordinates = [countryBoundaries.geometry.coordinates[0]];
+    return countryBoundaries;
+  },
+  countryWithProvinces() {
+    /** get bounding coordinates of Nepal with province level boundaries */
     const districts = this.districts().features;
     const provinces = [[], [], [], [], [], [], []];
     districts.map(district => provinces[district.properties.PROVINCE - 1].push(district));
@@ -81,19 +111,12 @@ const nepalGeojson = {
       ],
     };
   },
-  /** get bounding coordinates of Nepal without province or district level boundaries */
-  getCountryBoundaries() {
-    const districts = this.districts().features;
-    const countryBoundaries = districts
-      .reduce((acc, district) => turf.default(acc, district), {
-        type: 'Feature',
-        properties: {},
-        geometry: { type: 'Polygon', coordinates: [] },
-      });
-    countryBoundaries.geometry.coordinates = [countryBoundaries.geometry.coordinates[0]];
-    return countryBoundaries;
+  countryWithDistricts() {
+    /** get bounding coordinates of Nepal with district level boundaries */
+    return unpackedCoordinates;
   },
   districtsInfo() {
+    /** get information regarding all districts */
     const districts = this.districts().features;
     return districts.map(district => ({
       district: district.properties.DISTRICT,
@@ -102,15 +125,18 @@ const nepalGeojson = {
     }));
   },
   districtInfo(districtName) {
+    /** get information regarding selected district */
     return this.districtsInfo().find(
       place => place.district === districtName.toUpperCase(),
     );
   },
-  districtsList() {
+  listDistricts() {
+    /** get all district names */
     const districts = this.districts().features;
     return districts.map(district => district.properties.DISTRICT);
   },
-  provincesWithDistricts() {
+  listProvincesWithDistricts() {
+    /** list all provinces details with associated districts details */
     const districts = this.districts().features;
     const provinces = [[], [], [], [], [], [], []];
     districts.map(district => provinces[district.properties.PROVINCE - 1].push({
@@ -123,8 +149,12 @@ const nepalGeojson = {
       districts: provinceDistricts,
     }));
   },
-  provinceWithDistricts(provinceNumber) {
-    return this.provincesWithDistricts().find(
+  listProvinceWithDistricts(provinceNumber) {
+    if (isInvalidProvinceInput(provinceNumber)) {
+      throw new Error('Province should be between 1 and 7');
+    }
+    /** list selected provinces details with associated districts details */
+    return this.listProvincesWithDistricts().find(
       province => province.province === provinceNumber,
     );
   },
