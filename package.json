@@ -20,6 +20,7 @@
   "author": "acesmndr",
   "license": "MIT",
   "dependencies": {
+    "@turf/union": "^6.5.0",
     "brfs": "^2.0.2",
     "geojson-minifier": "^0.1.1"
   },

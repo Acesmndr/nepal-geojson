@@ -4,6 +4,7 @@ const fs = require('fs');
 const args = process.argv.slice(2);
 const command = args[0];
 const selector = args[1] || null;
+const withoutInternalFeatures = args[2] || false;
 
 const error = () => {
   console.log(`Nepal Geojson
@@ -11,12 +12,13 @@ const error = () => {
   nepal-geojson [option]
   
   Options:
-  country                                       provides geojson file of the entire country
   district KATHMANDU                            provides geojson file of the selected district
   province 1                                    provides geojson file of the selected province
-  
-  
-  acesmndr 2018-2020
+  province 1 true                               provides geojson file of the boundary of selected province
+  country                                       provides geojson file of the entire country with district level boundaries
+  country withProvinces                         provides geojson file of the entire country with province level boundaries
+  country withoutProvinces                      provides geojson file of the entire country without internal district or province boundaries
+  acesmndr 2018-2021
   `);
 };
 
@@ -29,7 +31,17 @@ const writeFile = (filename, content) => {
 
 switch (command) {
   case 'country':
-    writeFile('nepal', nepalGeojson.districts());
+    if(!selector) {
+      writeFile('nepal-districts', nepalGeojson.districts());
+      return;
+    }
+    console.log(selector);
+    if(selector === 'withProvinces') {
+      writeFile('nepal-provinces', nepalGeojson.getCountryWithProvinceBoundaries());
+    } else {
+      console.log('Hello');
+      writeFile('nepal', nepalGeojson.getCountryBoundaries());
+    }
     break;
   case 'province':
     if (!selector) {
@@ -37,7 +49,11 @@ switch (command) {
       return;
     }
     const province = Number(selector);
-    writeFile(`Province-${province}`, nepalGeojson.province(province));
+    if (withoutInternalFeatures) {
+      writeFile(`Province-${province}-boundaries`, nepalGeojson.getProvinceBoundary(province));
+    } else {
+      writeFile(`Province-${province}`, nepalGeojson.province(province));
+    }
     break;
   case 'district':
     if (!selector) {
