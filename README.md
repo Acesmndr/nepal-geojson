@@ -33,15 +33,19 @@ console.log(districtGeojson);
 
 ```js
 const nepalGeojson = require('nepal-geojson');
+const countryGeojson = nepalGeojson.country(); // to get geojson for country without province or district level boundaries
+const countryWithProvincesGeojson = nepalGeojson.countryWithProvinces(); // to get geojson for country with province level boundaries
+const countryWithDistrictsGeojson = nepalGeojson.countryWithDistricts(); // to get the geojson for country with district level boundaries. It's same as nepalGeojson.districts();
 const districtsGeojson = nepalGeojson.districts(); // to get all the geojson for all the districts
-const provinceOneGeojson = nepalGeojson.province(1); // to get the geojson for all the districts in province 1 similar for other 6 provinces
+const provinceOneGeojson = nepalGeojson.province(1); // to get the geojson for boundary of province 1
+const provinceOneGeojson = nepalGeojson.provinceWithDistricts(1); // to get the geojson for province 1 with district boundaries
 const kathmanduDistrictGeojson = nepalGeojson.district('KATHMANDU'); // to get the geojson of a single district
 // not only does it provide geojson files but also has helper functions to extract necessary details about the districts
-const districtsList = nepalGeojson.districtsList(); // to get an array of all the district names
+const districtsList = nepalGeojson.listDistricts(); // to get an array of all the district names
 const districtsInfo = nepalGeojson.districtsInfo(); // to get an array of objects of headquarter and province info for all 77 districts
 const dhankutaDistrictInfo = nepalGeojson.districtInfo('DHANKUTA'); // to get info about Dhankuta district
-const provincesDistrictsInfo = nepalGeojson.provincesWithDistricts(); // returns an array of arrays of provinces each containing info objects of containing districts
-const provinceDistrictsInfo = nepalGeojson.provinceWithDistricts(1); // returns array of info objects of districts in province 1
+const provincesDistrictsInfo = nepalGeojson.listProvincesWithDistricts(); // returns an array of arrays of provinces with province details each containing info objects of containing districts
+const provinceDistrictsInfo = nepalGeojson.listProvinceWithDistricts(1); // returns array of info objects of districts in province 1 as well as province information
 ```
 
 ### CLI Usage
@@ -49,12 +53,18 @@ const provinceDistrictsInfo = nepalGeojson.provinceWithDistricts(1); // returns 
 If you want to use it to generate geojson files in the CLI follow the following steps.
 ```shell
 npm i -g nepal-geojson
-# to build geojson for all the districts
+# to build geojson for country without district or province level boundaries
 nepal-geojson country
+# to build geojson for country with province level boundaries
+nepal-geojson country:withProvinces
+# to build geojson for country with district level boundaries
+nepal-geojson country:withDistricts
 # to build geojson for a particular district
 nepal-geojson district Kathmandu
-# to get the geojson for all the districts in province 1
+# to get the geojson for province 1 boundaries
 nepal-geojson province 1
+# to get the geojson for province 1 with its districts
+nepal-geojson province:withDistricts 1
 ```
 The built geojson files are stored in **geojson** folder.
 
@@ -66,17 +76,23 @@ You could also clone the repo and run the following commands to generate the map
 git clone git@github.com:Acesmndr/nepal-geojson.git
 cd nepal-geojson
 npm install
-# to build geojson for all the districts
+# to build geojson for country without district or province level boundaries
 npm run country
+# to build geojson for country with province level boundaries
+npm run country:withProvinces
+# to build geojson for country with district level boundaries
+npm run country:withDistricts
 # to build geojson for a particular district
 npm run district Kathmandu
-# to get the geojson for all the districts in province 1
+# to get the geojson for province 1 boundaries
 npm run province 1
+# to get the geojson for province 1 with its districts
+npm run province:withDistricts 1
 ```
 
 ### Download Static Geojson
 
-If you don't want to use this npm package and just want the geojson file for the entire country or a particular province I've got you covered. I have built those and uploaded them to **generated-geojson** folder. You can find them [here](https://github.com/Acesmndr/nepal-geojson/tree/master/generated-geojson).
+If you don't want to use this npm package and just want the geojson file for the entire country or a particular province and associated districts I've got you covered. I have built those and uploaded them to **generated-geojson** folder. You can find them [here](https://github.com/Acesmndr/nepal-geojson/tree/master/generated-geojson).
 
 ## Author
 

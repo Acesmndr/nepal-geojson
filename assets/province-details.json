@@ -1,0 +1,39 @@
+{
+  "provinces": [
+    {
+      "id": 1,
+      "name": "Province No. 1",
+      "capital": "Biratnagar"
+    },
+    {
+      "id": 2,
+      "name": "Province No. 2",
+      "capital": "Janakpur"
+    },
+    {
+      "id": 3,
+      "name": "Bagmati",
+      "capital": "Hetauda"
+    },
+    {
+      "id": 4,
+      "name": "Gandaki",
+      "capital": "Pokhara"
+    },
+    {
+      "id": 5,
+      "name": "Lumbini",
+      "capital": "Deukhuri"
+    },
+    {
+      "id": 6,
+      "name": "Karnali",
+      "capital": "Birendranagar"
+    },
+    {
+      "id": 7,
+      "name": "Sudurpashchim",
+      "capital": "Godawari"
+    }
+  ]
+}

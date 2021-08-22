@@ -11,12 +11,14 @@ const error = () => {
   nepal-geojson [option]
   
   Options:
-  country                                       provides geojson file of the entire country
   district KATHMANDU                            provides geojson file of the selected district
-  province 1                                    provides geojson file of the selected province
+  province                                      provides geojson file of the boundary of selected province
+  province:withDistricts                        provides geojson file of the selected province with districts
+  country                                       provides geojson file of the boundary of entire country
+  country:withProvinces                         provides geojson file of the entire country with province level boundaries
+  country:withDistricts                         provides geojson file of the entire country with district level boundaries
   
-  
-  acesmndr 2018-2020
+  acesmndr 2018-2021
   `);
 };
 
@@ -26,26 +28,40 @@ const writeFile = (filename, content) => {
   }
   fs.writeFileSync(`./geojson/${filename}.geojson`, JSON.stringify(content));
 };
-
+let selected = null;
 switch (command) {
   case 'country':
-    writeFile('nepal', nepalGeojson.districts());
+    writeFile('nepal', nepalGeojson.country());
+    break;
+  case 'country:withProvinces':
+    writeFile('nepal-with-provinces', nepalGeojson.countryWithProvinces());
+    break;
+  case 'country:withDistricts':
+    writeFile('nepal-with-districts', nepalGeojson.countryWithDistricts());
     break;
   case 'province':
     if (!selector) {
       error();
-      return;
+      break;
     }
-    const province = Number(selector);
-    writeFile(`Province-${province}`, nepalGeojson.province(province));
+    selected = Number(selector);
+    writeFile(`Province-${selected}`, nepalGeojson.province(selected));
+    break;
+  case 'province:withDistricts':
+    if (!selector) {
+      error();
+      break;
+    }
+    selected = Number(selector);
+    writeFile(`Province-${selected}-with-districts`, nepalGeojson.provinceWithDistricts(selected));
     break;
   case 'district':
     if (!selector) {
       error();
-      return;
+      break;
     }
-    const district = selector.toLocaleUpperCase();
-    writeFile(`${district}-district`, nepalGeojson.district(district));
+    selected = selector.toLocaleUpperCase();
+    writeFile(`${selected}-district`, nepalGeojson.district(selected));
     break;
   default:
     error();
