@@ -1,6 +1,6 @@
 {
   "name": "nepal-geojson",
-  "version": "4.0.0",
+  "version": "5.0.0-alpha",
   "description": "Lightweight package for map of Nepal",
   "main": "index.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
-    "mocha": "^6.1.4"
+    "mocha": "^6.1.4",
+    "xhr-request": "^1.1.0"
   }
 }
